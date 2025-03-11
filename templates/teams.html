@@ -1,0 +1,49 @@
+
+{% block content %}
+    <h1>Col·lecció {{collection.name}}</h1>
+    <h2>Equips</h2>
+
+        <!-- Formulari per afegir un nou equip -->
+        <form action="/teams/add/{{ collection.id }}" method="post" class="mb-3">
+            <div class="mb-2">
+                <input type="text" name="name" class="form-control" placeholder="Nom de l'Equip" required>
+            </div>
+            <div class="mb-2">
+                <input type="text" name="role" class="form-control" placeholder="Rol" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Afegir Equip</button>
+        </form>
+
+    <!-- Llista d'equips -->
+        {% if collection.teams %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Rol</th>
+                        <th>Accions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in collection.teams %}
+                    <tr>
+                        <td>{{ team.name }}</td>
+                        <td>{{ team.role }}</td>
+                        <td>
+                            <!-- Enllaç per gestionar jugadors -->
+                            <a href="/players/{{ team.id }}" class="btn btn-info btn-sm">Gestiona Jugadors</a>
+                            <!-- Enllaç per gestionar equip -->
+                            <a href="/teams/detail/{{ team.id }}" class="btn btn-info btn-sm" >Veure Detalls</a>
+                            <a href="/teams/edit/{{ team.id }}" class="btn btn-warning btn-sm">Editar</a>
+                            <form action="/teams/delete/{{ team.id }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hi ha equips en aquesta col·lecció.</p>
+        {% endif %}
+{% endblock %}

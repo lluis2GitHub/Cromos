@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afegir Equip</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Afegir Equip a la Col·lecció: {{ collection.name }}</h1>
+        <form action="/teams/add/{{ collection.id }}" method="post">
+            <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Nom de l'Equip" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="role" class="form-control" placeholder="Rol" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Afegir Equip</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}
+
+

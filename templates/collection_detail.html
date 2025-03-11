@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Col·leccions</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Llista de Col·leccions</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Descripció</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ collection.id }}</td>
+                    <td>{{ collection.name }}</td>
+                    <td>{{ collection.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Botó per tornar a la llista de col·leccions -->
+        <a href="/" class="btn btn-secondary mt-3">Tornar a la llista de col·leccions</a>
+
+    </div>
+    {% if message %}
+    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %} 
+    {% include "teams.html" %}
+
+</body>
+</html>
+{% endblock %}

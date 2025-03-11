@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Detall de l'Equip: {{ team.name }}</h2>
+    <p><strong>Rol:</strong> {{ team.role }}</p>
+
+    <h3>Jugadors</h3>
+    {% if players %}
+        <ul class="list-group">
+            {% for player in players %}
+                <li class="list-group-item">
+                    {{ player.name }} - {{ player.position }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hi ha jugadors en aquest equip.</p>
+    {% endif %}
+
+    <a href="/" class="btn btn-secondary mt-3">Torna enrere</a>
+
+</div>
+{% endblock %}

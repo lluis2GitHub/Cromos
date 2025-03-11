@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Col·lecció</title>
+</head>
+<body>
+    {% if message %}
+    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <!-- Formulari per editar la col·lecció -->
+    <div class="container mt-4">
+        <h1>Editar Col·lecció: {{ collection.name }}</h1>
+        <form action="/collections/edit/{{ collection.id }}" method="POST">
+            <!-- Nom de la col·lecció -->
+            <div class="form-group">
+                <label for="name">Nom de la Col·lecció:</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ collection.name }}" required>
+            </div>
+            
+            <!-- Descripció de la col·lecció -->
+            <div class="form-group mt-3">
+                <label for="description">Descripció:</label>
+                <textarea id="description" name="description" class="form-control" required>{{ collection.description }}</textarea>
+            </div>
+
+            <!-- Botó per actualitzar la col·lecció -->
+            <div class="mt-4">
+                <button type="submit" class="btn btn-warning">Actualitzar Col·lecció</button>
+            </div>
+        </form>
+
+        <!-- Botó per tornar a la llista de col·leccions -->
+        <a href="/" class="btn btn-secondary mt-3">Tornar a la llista de col·leccions</a>
+    </div>
+</body>
+</html>
+{% endblock %}

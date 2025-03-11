@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestió de Jugadors</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Gestió de Jugadors per l'Equip: {{ team.name }}</h2>
+
+    <!-- Missatges de resposta -->
+    {% if message %}
+    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <!-- Formulari per Afegir Jugador -->
+    <form action="/players/add/{{ team.id }}" method="POST" class="mb-3">
+        <input type="text" name="name" class="form-control mb-2" placeholder="Nom del Jugador" required>
+        <input type="text" name="position" class="form-control mb-2" placeholder="Posició" required>
+        <button type="submit" class="btn btn-primary">Afegir Jugador</button>
+    </form>
+
+    <h3>Llista de Jugadors</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Posició</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.position }}</td>
+                <td>
+                    <a href="/players/edit/{{ player.id }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="/players/delete/{{ player.id }}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Vols eliminar aquest jugador?');">Esborrar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Botó per tornar enrere -->
+    <a href="/teams/{{ team.collection_id }}" class="btn btn-secondary">Tornar als Equips</a>
+</div>
+
+</body>
+</html>
+{% endblock %}
