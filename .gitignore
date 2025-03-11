@@ -1,0 +1,15 @@
+# Ignorar fitxers temporals
+*.log
+*.tmp
+
+# Ignorar directoris de dependències (per exemple, en un projecte Node.js)
+node_modules/
+
+# Ignorar fitxers específics de Visual Studio
+.vs/
+.idea/
+bin/
+obj/
+
+# ignorar venv modules
+venv/
