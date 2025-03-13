@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends, Form, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from database import get_db
+from database.database import get_db
 from repository.collections import get_collection, get_all_collections, create_collection, update_collection, delete_collection
 from fastapi.templating import Jinja2Templates
 

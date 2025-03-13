@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from database import Base
+from database.database import Base
 
 class Collection(Base):
     __tablename__ = 'collections'
@@ -11,3 +11,5 @@ class Collection(Base):
 
     # Relació amb la taula Team
     teams = relationship("Team", back_populates="collection", cascade="all, delete-orphan")
+    players = relationship("Player", back_populates="collection")  # 🔥 Relació amb Player
+

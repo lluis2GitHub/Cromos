@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from routers import collections,teams,players
-from database import engine, Base
+from database.database import engine, Base
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
-
 
 # Initialize the FastAPI app
 app = FastAPI()

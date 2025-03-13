@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from models.teams import Team
 from models.collection import Collection
 from models.player import Player
-from database import get_db
+from database.database import get_db
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request, Form
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from database import SessionLocal,get_db
+from cromos.database.database import SessionLocal,get_db
 from models.collection import Collection
 from fastapi import HTTPException
 from fastapi.responses import RedirectResponse,HTMLResponse
