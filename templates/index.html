@@ -1,61 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Col·leccions</title>
-</head>
-<body>
-    {% if message %}
-    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Benvingut a la Gestió de Col·leccions i Equips</h1>
+    
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{{ url_for('list_collections') }}" class="btn btn-primary btn-lg">Gestionar Col·leccions</a>
+        <a href="{{ url_for('list_teams') }}" class="btn btn-success btn-lg">Gestionar Equips</a>
     </div>
-    {% endif %}
-    <!-- Formulari per Afegir Col·lecció -->
-    <div class="container mt-4">
-        <h2>Afegir nova Col·lecció</h2>
-        <form action="/collections/add" method="POST" class="mb-3">
-            <input type="text" name="name" class="form-control mb-2" placeholder="Nom de la Col·lecció" required>
-            <textarea name="description" class="form-control mb-2" placeholder="Descripció" required></textarea>
-            <button type="submit" class="btn btn-primary">Afegir Col·lecció</button>
-        </form>
-    </div>
-
-    <!-- Llista de Col·leccions -->
-    <div class="container mt-4">
-        <h1>Llista de Col·leccions</h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nom de la Col·lecció</th>
-                    <th>Descripció</th>
-                    <th>Accions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for collection in collections %}
-                <tr>
-                    <td>{{ collection.name }}</td>
-                    <td>{{ collection.description }}</td>
-                    <td>
-                        <!-- Enllaç per veure el detall de la col·lecció -->
-                        <a href="/collections/{{ collection.id }}" class="btn btn-info btn-sm">Veure</a>
-                        <!-- Enllaç per editar la col·lecció -->
-                        <a href="/collections/edit/{{ collection.id }}" class="btn btn-warning btn-sm">Editar</a>
-                        <!-- Formulari per esborrar la col·lecció -->
-                        <form action="/collections/delete/{{ collection.id }}" method="POST" class="d-inline" onsubmit="return confirm('Segur que vols esborrar?');">
-                            <button type="submit" class="btn btn-danger btn-sm">Esborrar</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</body>
+</div>
 {% endblock %}
-</html>

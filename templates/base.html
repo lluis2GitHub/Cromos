@@ -5,15 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestió de Col·leccions</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!-- Barra de Navegació -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <!-- Moure el botó d'Inici amb un marge a l'esquerra -->
-        <a class="navbar-brand ms-2" href="/">Inici</a>
+        <!-- Enllaç a la pàgina d'inici -->
+        <a class="navbar-brand ms-2" href="{{ url_for('read_root') }}">Inici</a>
+
+        <!-- Botó per expandir la navegació en pantalles petites -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Enllaços de navegació -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_collections') }}">Col·leccions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_teams') }}">Equips</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
+
 <!-- Contingut de la pàgina -->
 <div class="container mt-4">
     {% block content %}{% endblock %}
@@ -21,3 +41,4 @@
 
 </body>
 </html>
+

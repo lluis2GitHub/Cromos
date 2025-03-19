@@ -1,24 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Detall de l'Equip: {{ team.name }}</h2>
-    <p><strong>Rol:</strong> {{ team.role }}</p>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equips</title>
+</head>
+<body>
+    {% if message %}
+    <div class="alert alert-{{ message_type }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %} 
+    <div class="container mt-4">
+        <h1>Llista d'Equips</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ team.id }}</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.role }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Botó per tornar a la llista d'equips -->
+        <a href="/teams" class="btn btn-secondary mt-3">Tornar a la llista d'equips</a>
 
-    <h3>Jugadors</h3>
-    {% if players %}
-        <ul class="list-group">
-            {% for player in players %}
-                <li class="list-group-item">
-                    {{ player.name }} - {{ player.position }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hi ha jugadors en aquest equip.</p>
-    {% endif %}
-
-    <a href="/" class="btn btn-secondary mt-3">Torna enrere</a>
-
-</div>
+    </div>
+</body>
+</html>
 {% endblock %}
